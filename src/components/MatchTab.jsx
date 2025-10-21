@@ -176,7 +176,7 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
               onClick={resetForm}
               className="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded font-semibold hover:bg-gray-400"
             >
-              Cancle
+              Cancel
             </button>
             <button
               onClick={handleSaveMatch}
