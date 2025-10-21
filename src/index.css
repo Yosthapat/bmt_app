@@ -1,4 +1,4 @@
-@import url('https://cdn.jsdelivr.net/npm/tailwindcss@3.3.0/dist/tailwind.min.css');
+/* ไม่ต้องมี @import หรือ @tailwind */
 
 * {
   margin: 0;
@@ -17,34 +17,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Prevent zoom on input focus (iOS) */
 input, select, textarea {
   font-size: 16px !important;
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
 }
 
-/* Larger touch targets */
 button, a {
   min-height: 44px;
   min-width: 44px;
-}
-
-/* Reduce animation on mobile */
-@media (max-width: 640px) {
-  .animate-bounce {
-    animation-duration: 2s;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
 }
