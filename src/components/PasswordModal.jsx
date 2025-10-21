@@ -25,14 +25,14 @@ const PasswordModal = ({
           <Lock className="text-blue-500" size={48} />
         </div>
         <h3 className="text-xl font-bold text-center mb-4">
-          {isReset ? 'ใส่รหัสรีเซ็ตระบบ' : 'ใส่รหัสผ่าน'}
+          {isReset ? 'Enter reset code' : 'Enter password'}
         </h3>
         <input
           type="password"
           value={passwordInput}
           onChange={(e) => setPasswordInput(e.target.value)}
           onKeyPress={handleKeyPress}
-          placeholder="กรอกรหัส 4 หลัก"
+          placeholder="Please enter a 4-digit code."
           className="w-full p-3 border-2 rounded-lg mb-2 text-center text-2xl tracking-widest"
           maxLength="4"
           autoFocus
@@ -45,13 +45,13 @@ const PasswordModal = ({
             onClick={onClose}
             className="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold"
           >
-            ยกเลิก
+            Cancel
           </button>
           <button
             onClick={onVerify}
             className="flex-1 bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold"
           >
-            ยืนยัน
+            Confirm
           </button>
         </div>
       </div>

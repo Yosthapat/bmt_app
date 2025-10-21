@@ -1,20 +1,20 @@
 import React from 'react';
-import { Users, Trophy } from 'lucide-react';
+import { Users, Swords, Beer, Trophy } from 'lucide-react';
 import { TABS } from '../utils/constants';
 
 const Tabs = ({ activeTab, setActiveTab }) => {
   const tabs = [
-    { id: TABS.MEMBER, label: 'MEMBER', shortLabel: 'MEM', icon: Users },
-    { id: TABS.MATCH, label: 'MATCH', shortLabel: 'MAT', icon: Trophy },
-    { id: TABS.RESULT, label: 'RESULT', shortLabel: 'RES', icon: Trophy },
-    { id: TABS.SCORE, label: 'SCORE', shortLabel: 'SCO', icon: Trophy }
+    { id: TABS.MEMBER, label: 'MEMBER', shortLabel: 'MEMBER', icon: Users },
+    { id: TABS.MATCH, label: 'MATCH', shortLabel: 'MATCH', icon: Swords },
+    { id: TABS.RESULT, label: 'RESULT', shortLabel: 'RESULT', icon: Beer },
+    { id: TABS.SCORE, label: 'SCORE', shortLabel: 'SCORE', icon: Trophy }
   ];
 
   const getTabColor = (tabId) => {
     const colors = {
-      [TABS.MEMBER]: 'bg-orange-300',
+      [TABS.MEMBER]: 'bg-puple-300',
       [TABS.MATCH]: 'bg-green-300',
-      [TABS.RESULT]: 'bg-blue-300',
+      [TABS.RESULT]: 'bg-orange-300',
       [TABS.SCORE]: 'bg-pink-300'
     };
     return colors[tabId] || 'bg-gray-200';

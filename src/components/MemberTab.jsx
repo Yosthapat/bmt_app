@@ -19,7 +19,7 @@ const MemberTab = ({ members, onAddMember, onDeleteMember, requestPassword }) =>
 
     // ตรวจสอบว่าเป็นไฟล์รูปภาพ
     if (!isImageFile(file)) {
-      alert('กรุณาเลือกไฟล์รูปภาพ (JPG, PNG, GIF, WebP)');
+      alert('Please select an image file (JPG, PNG, GIF, WebP).');
       return;
     }
 
@@ -27,9 +27,9 @@ const MemberTab = ({ members, onAddMember, onDeleteMember, requestPassword }) =>
     try {
       const compressedImage = await compressImage(file, 400, 0.7);
       setNewMember({ ...newMember, photo: compressedImage });
-      alert('อัปโหลดรูปสำเร็จ!');
+      alert('Image uploaded successfully!');
     } catch (error) {
-      alert(error.message || 'เกิดข้อผิดพลาดในการอัปโหลดรูป');
+      alert(error.message || 'Image upload failed.');
     } finally {
       setUploading(false);
     }
@@ -41,7 +41,7 @@ const MemberTab = ({ members, onAddMember, onDeleteMember, requestPassword }) =>
       setNewMember({ name: '', team: TEAMS.BURGUNDY, level: 'Milk', photo: '' });
       setShowAddMember(false);
     } else {
-      alert('กรุณาใส่ชื่อสมาชิก');
+      alert("Please enter the member's name.");
     }
   };
 
@@ -64,11 +64,11 @@ const MemberTab = ({ members, onAddMember, onDeleteMember, requestPassword }) =>
 
       {showAddMember && (
         <div className="bg-white p-4 rounded shadow mb-4">
-          <h3 className="font-bold mb-3">เพิ่มสมาชิกใหม่</h3>
+          <h3 className="font-bold mb-3">Add New Member</h3>
           
           <input
             type="text"
-            placeholder="ชื่อ"
+            placeholder="Name"
             value={newMember.name}
             onChange={(e) => setNewMember({ ...newMember, name: e.target.value })}
             className="w-full p-2 border rounded mb-2"
@@ -95,7 +95,7 @@ const MemberTab = ({ members, onAddMember, onDeleteMember, requestPassword }) =>
           
           <div className="mb-2">
             <label className="block text-sm font-semibold mb-1">
-              รูปภาพ {uploading && <span className="text-blue-500">(กำลังประมวลผล...)</span>}
+              Photo {uploading && <span className="text-blue-500">(Processing...)</span>}
             </label>
             <input
               type="file"
@@ -105,7 +105,7 @@ const MemberTab = ({ members, onAddMember, onDeleteMember, requestPassword }) =>
               className="w-full p-2 border rounded"
             />
             <p className="text-xs text-gray-500 mt-1">
-              * รองรับไฟล์ JPG, PNG, GIF, WebP (ระบบจะบีบอัดอัตโนมัติ)
+              * Supports JPG, PNG, GIF, and WebP files (automatically compressed by the system).
             </p>
             {newMember.photo && (
               <div className="mt-2 flex justify-center">
@@ -126,14 +126,14 @@ const MemberTab = ({ members, onAddMember, onDeleteMember, requestPassword }) =>
               }}
               className="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded"
             >
-              ยกเลิก
+              Cancel
             </button>
             <button
               onClick={handleAddMember}
               disabled={uploading}
               className="flex-1 bg-green-500 text-white px-4 py-2 rounded disabled:bg-gray-400"
             >
-              บันทึก
+              Save
             </button>
           </div>
         </div>

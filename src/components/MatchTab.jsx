@@ -26,7 +26,7 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
       }
       resetForm();
     } else {
-      alert('กรุณาเลือกผู้เล่นให้ครบ 4 คน');
+      alert('Please select all 4 players.');
     }
   };
 
@@ -176,7 +176,7 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
               onClick={resetForm}
               className="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded font-semibold hover:bg-gray-400"
             >
-              ยกเลิก
+              Cancle
             </button>
             <button
               onClick={handleSaveMatch}
@@ -193,7 +193,7 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
       <div className="space-y-4">
         {pendingMatches.length === 0 ? (
           <div className="text-center text-gray-500 py-10">
-            <p>ไม่มีแมตช์ที่รอการแข่งขัน</p>
+            <p>No Match</p>
           </div>
         ) : (
           pendingMatches.map((match) => {
@@ -260,7 +260,7 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
                     <div className="text-xl sm:text-2xl font-bold mb-1">
                       {match.scoreTeam1} - {match.scoreTeam2}
                     </div>
-                    <div className="text-xs sm:text-sm font-semibold" style={{color: team1Won ? '#ef4444' : team2Won ? '#2563eb' : '#666'}}>
+                    <div className="text-xs sm:text-sm font-semibold" style={{color: team1Won ? '#ef4444' : team2Won ? '#2563eb' : '#00a45aff'}}>
                       {team1Won ? 'Burgundy Win' : team2Won ? 'Navy Blue Win' : 'Waiting'}
                     </div>
                   </div>

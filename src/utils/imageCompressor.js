@@ -10,21 +10,21 @@ export const compressImage = (file, maxSize = 400, quality = 0.7) => {
     // ตรวจสอบขนาดไฟล์ (ถ้าเกิน 5MB ให้เตือน)
     const maxFileSize = 5 * 1024 * 1024; // 5MB
     if (file.size > maxFileSize) {
-      reject(new Error('ไฟล์ใหญ่เกินไป กรุณาเลือกไฟล์ที่เล็กกว่า 5MB'));
+      reject(new Error('Oops! Your file is too big. Please select a file smaller than 5MB.'));
       return;
     }
 
     const reader = new FileReader();
     
     reader.onerror = () => {
-      reject(new Error('ไม่สามารถอ่านไฟล์ได้'));
+      reject(new Error('Oops! We can’t read this file.'));
     };
     
     reader.onload = (e) => {
       const img = new Image();
       
       img.onerror = () => {
-        reject(new Error('ไฟล์ไม่ใช่รูปภาพที่ถูกต้อง'));
+        reject(new Error('The file is not a valid image.'));
       };
       
       img.onload = () => {
@@ -70,7 +70,7 @@ export const compressImage = (file, maxSize = 400, quality = 0.7) => {
           
           resolve(compressedImage);
         } catch (error) {
-          reject(new Error('เกิดข้อผิดพลาดในการบีบอัดรูป'));
+          reject(new Error('Oops! Something went wrong while compressing the image.'));
         }
       };
       

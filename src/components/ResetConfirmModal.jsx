@@ -13,19 +13,19 @@ const ResetConfirmModal = ({ show, onClose, onConfirm, membersCount, matchesCoun
           </div>
         </div>
         <h3 className="text-xl font-bold text-center mb-2 text-red-600">
-          ⚠️ ยืนยันการรีเซ็ตระบบ
+          ⚠️ Are you sure you want to reset the system?
         </h3>
         <p className="text-center text-gray-700 mb-4">
-          คุณแน่ใจหรือไม่ที่จะลบข้อมูลทั้งหมด?<br/>
-          <span className="font-bold text-red-600">การกระทำนี้ไม่สามารถย้อนกลับได้!</span>
+          Are you sure you want to delete all data?<br/>
+          <span className="font-bold text-red-600">This action cannot be undone!</span>
         </p>
         <div className="bg-yellow-50 border border-yellow-300 rounded p-3 mb-4">
-          <p className="text-sm text-gray-700">ข้อมูลที่จะถูกลบ:</p>
+          <p className="text-sm text-gray-700">Data to be deleted:</p>
           <ul className="text-sm text-gray-600 list-disc list-inside mt-1">
-            <li>สมาชิกทั้งหมด ({membersCount} คน)</li>
-            <li>แมตช์ทั้งหมด ({matchesCount} แมตช์)</li>
-            <li>ผลการแข่งขันทั้งหมด</li>
-            <li>คะแนนทั้งหมด</li>
+            <li>All members ({membersCount})</li>
+            <li>All matches ({matchesCount} matches)</li>
+            <li>All results</li>
+            <li>Total scores</li>
           </ul>
         </div>
         <div className="flex gap-2">
@@ -33,13 +33,13 @@ const ResetConfirmModal = ({ show, onClose, onConfirm, membersCount, matchesCoun
             onClick={onClose}
             className="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded-lg font-semibold"
           >
-            ยกเลิก
+            Cancel
           </button>
           <button
             onClick={onConfirm}
             className="flex-1 bg-red-600 text-white px-4 py-2 rounded-lg font-semibold"
           >
-            ยืนยัน รีเซ็ต
+            Reset Now
           </button>
         </div>
       </div>
