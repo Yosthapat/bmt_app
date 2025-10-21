@@ -12,7 +12,7 @@ const Tabs = ({ activeTab, setActiveTab }) => {
 
   const getTabColor = (tabId) => {
     const colors = {
-      [TABS.MEMBER]: 'bg-puple-300',
+      [TABS.MEMBER]: 'bg-purple-300',
       [TABS.MATCH]: 'bg-green-300',
       [TABS.RESULT]: 'bg-orange-300',
       [TABS.SCORE]: 'bg-pink-300'

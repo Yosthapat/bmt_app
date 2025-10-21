@@ -86,7 +86,7 @@ const App = () => {
         setPendingAction(null);
       }
     } else {
-      setPasswordError('รหัสผ่านไม่ถูกต้อง');
+      setPasswordError('Incorrect password.');
     }
   };
 
@@ -103,9 +103,9 @@ const App = () => {
       await set(ref(database, 'members'), null);
       await set(ref(database, 'matches'), null);
       setShowResetConfirm(false);
-      alert('รีเซ็ตระบบเรียบร้อย!');
+      alert('System reset successfully!');
     } catch (error) {
-      alert('เกิดข้อผิดพลาด: ' + error.message);
+      alert('Error: ' + error.message);
     }
   };
 
@@ -115,7 +115,7 @@ const App = () => {
       const memberRef = ref(database, `members/${member.id}`);
       await set(memberRef, member);
     } catch (error) {
-      alert('เกิดข้อผิดพลาดในการเพิ่มสมาชิก: ' + error.message);
+      alert('Error adding member: ' + error.message);
     }
   };
 
@@ -124,7 +124,7 @@ const App = () => {
       const memberRef = ref(database, `members/${id}`);
       await remove(memberRef);
     } catch (error) {
-      alert('เกิดข้อผิดพลาดในการลบสมาชิก: ' + error.message);
+      alert('Error deleting member: ' + error.message);
     }
   };
 
@@ -134,7 +134,7 @@ const App = () => {
       const matchRef = ref(database, `matches/${match.id}`);
       await set(matchRef, match);
     } catch (error) {
-      alert('เกิดข้อผิดพลาดในการเพิ่มแมตช์: ' + error.message);
+      alert('Error adding match: ' + error.message);
     }
   };
 
@@ -143,7 +143,7 @@ const App = () => {
       const matchRef = ref(database, `matches/${updatedMatch.id}`);
       await set(matchRef, updatedMatch);
     } catch (error) {
-      alert('เกิดข้อผิดพลาดในการแก้ไขแมตช์: ' + error.message);
+      alert('Error editing match: ' + error.message);
     }
   };
 
@@ -152,7 +152,7 @@ const App = () => {
       const matchRef = ref(database, `matches/${id}`);
       await remove(matchRef);
     } catch (error) {
-      alert('เกิดข้อผิดพลาดในการลบแมตช์: ' + error.message);
+      alert('Error deleting match: ' + error.message);
     }
   };
 
