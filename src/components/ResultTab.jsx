@@ -9,12 +9,12 @@ const ResultTab = ({ members, matches, requestPassword, onEdit, onDelete }) => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold text-center mb-4">ผลการแข่งขัน</h2>
+      <h2 className="text-xl font-bold text-center mb-4">Result</h2>
       
       {completedMatches.length === 0 ? (
         <div className="text-center text-gray-500 py-10">
           <Trophy size={48} className="mx-auto mb-3 opacity-30" />
-          <p>ยังไม่มีผลการแข่งขัน</p>
+          <p>No Result</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -83,7 +83,7 @@ const ResultTab = ({ members, matches, requestPassword, onEdit, onDelete }) => {
                       {match.scoreTeam1} - {match.scoreTeam2}
                     </div>
                     <div className="text-xs sm:text-sm font-semibold" style={{color: team1Won ? '#ef4444' : team2Won ? '#2563eb' : '#666'}}>
-                      {team1Won ? 'ทีม 1 ชนะ' : team2Won ? 'ทีม 2 ชนะ' : 'เสมอ'}
+                      {team1Won ? 'Burgundy Win' : team2Won ? 'Navy Blue Win' : 'Waiting'}
                     </div>
                   </div>
 

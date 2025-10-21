@@ -13,6 +13,10 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
     scoreTeam2: 0
   });
 
+  // กรองสมาชิกตามทีม
+  const burgundyMembers = members.filter(m => m.team === 'Burgundy');
+  const navyBlueMembers = members.filter(m => m.team === 'Navy Blue');
+
   const handleSaveMatch = () => {
     if (newMatch.team1Player1 && newMatch.team1Player2 && newMatch.team2Player1 && newMatch.team2Player2) {
       if (editingMatch) {
@@ -61,96 +65,125 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
 
       {showAddMatch && (
         <div className="bg-white p-4 rounded shadow mb-4">
-          <h3 className="font-bold mb-3 text-center">
-            {editingMatch ? 'แก้ไขแมตช์' : 'เพิ่มแมตช์ใหม่'}
+          <h3 className="font-bold mb-3 text-center text-lg">
+            {editingMatch ? 'Edit Match' : 'Add Match'}
           </h3>
           
-          {/* Team 1 */}
-          <div className="mb-4 p-3 bg-blue-50 rounded">
-            <h4 className="font-semibold mb-2 text-blue-700">Team 1 (คู่ที่ 1)</h4>
+          {/* Team Burgundy */}
+          <div className="mb-4 p-3 bg-red-50 rounded border-2 border-red-300">
+            <h4 className="font-semibold mb-2 text-red-700 text-center text-lg">
+              Team Burgundy
+            </h4>
             <select
               value={newMatch.team1Player1}
               onChange={(e) => setNewMatch({ ...newMatch, team1Player1: e.target.value })}
-              className="w-full p-2 border rounded mb-2"
+              className="w-full p-2 border-2 border-red-300 rounded mb-2 focus:border-red-500 focus:outline-none"
             >
-              <option value="">เลือกนักกีฬาคนที่ 1</option>
-              {members.map(m => (
-                <option key={m.id} value={m.name}>{m.name} ({m.team})</option>
+              <option value="">Pick Player 1</option>
+              {burgundyMembers.map(m => (
+                <option key={m.id} value={m.name}>
+                  {m.name} (Lv.{m.level})
+                </option>
               ))}
             </select>
             <select
               value={newMatch.team1Player2}
               onChange={(e) => setNewMatch({ ...newMatch, team1Player2: e.target.value })}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border-2 border-red-300 rounded focus:border-red-500 focus:outline-none"
             >
-              <option value="">เลือกนักกีฬาคนที่ 2</option>
-              {members.map(m => (
-                <option key={m.id} value={m.name}>{m.name} ({m.team})</option>
+              <option value="">Pick Player 2</option>
+              {burgundyMembers.map(m => (
+                <option key={m.id} value={m.name}>
+                  {m.name} (Lv.{m.level})
+                </option>
               ))}
             </select>
           </div>
 
-          {/* Team 2 */}
-          <div className="mb-4 p-3 bg-green-50 rounded">
-            <h4 className="font-semibold mb-2 text-green-700">Team 2 (คู่ที่ 2)</h4>
+          {/* VS Divider */}
+          <div className="text-center my-3">
+            <span className="bg-yellow-400 text-gray-900 px-6 py-2 rounded-full font-bold text-xl">
+              VS
+            </span>
+          </div>
+
+          {/* Team Navy Blue */}
+          <div className="mb-4 p-3 bg-blue-50 rounded border-2 border-blue-300">
+            <h4 className="font-semibold mb-2 text-blue-700 text-center text-lg">
+              Team Navy Blue
+            </h4>
             <select
               value={newMatch.team2Player1}
               onChange={(e) => setNewMatch({ ...newMatch, team2Player1: e.target.value })}
-              className="w-full p-2 border rounded mb-2"
+              className="w-full p-2 border-2 border-blue-300 rounded mb-2 focus:border-blue-500 focus:outline-none"
             >
-              <option value="">เลือกนักกีฬาคนที่ 1</option>
-              {members.map(m => (
-                <option key={m.id} value={m.name}>{m.name} ({m.team})</option>
+              <option value="">Pick Player 1</option>
+              {navyBlueMembers.map(m => (
+                <option key={m.id} value={m.name}>
+                  {m.name} (Lv.{m.level})
+                </option>
               ))}
             </select>
             <select
               value={newMatch.team2Player2}
               onChange={(e) => setNewMatch({ ...newMatch, team2Player2: e.target.value })}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border-2 border-blue-300 rounded focus:border-blue-500 focus:outline-none"
             >
-              <option value="">เลือกนักกีฬาคนที่ 2</option>
-              {members.map(m => (
-                <option key={m.id} value={m.name}>{m.name} ({m.team})</option>
+              <option value="">Pick Player 2</option>
+              {navyBlueMembers.map(m => (
+                <option key={m.id} value={m.name}>
+                  {m.name} (Lv.{m.level})
+                </option>
               ))}
             </select>
           </div>
 
           {/* Scores */}
-          <div className="mb-4">
-            <h4 className="font-semibold mb-2">คะแนน</h4>
-            <div className="grid grid-cols-2 gap-2">
-              <input
-                type="number"
-                placeholder="คะแนน Team 1"
-                value={newMatch.scoreTeam1}
-                onChange={(e) => setNewMatch({ ...newMatch, scoreTeam1: e.target.value })}
-                className="p-2 border rounded"
-                min="0"
-              />
-              <input
-                type="number"
-                placeholder="คะแนน Team 2"
-                value={newMatch.scoreTeam2}
-                onChange={(e) => setNewMatch({ ...newMatch, scoreTeam2: e.target.value })}
-                className="p-2 border rounded"
-                min="0"
-              />
+          <div className="mb-4 bg-gray-50 p-3 rounded">
+            <h4 className="font-semibold mb-2 text-center">score</h4>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-sm font-medium text-red-700 mb-1">
+                  Team Burgundy
+                </label>
+                <input
+                  type="number"
+                  placeholder="score"
+                  value={newMatch.scoreTeam1}
+                  onChange={(e) => setNewMatch({ ...newMatch, scoreTeam1: e.target.value })}
+                  className="w-full p-2 border-2 border-red-300 rounded text-center text-xl font-bold focus:border-red-500 focus:outline-none"
+                  min="0"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-blue-700 mb-1">
+                  Team Navy Blue
+                </label>
+                <input
+                  type="number"
+                  placeholder="score"
+                  value={newMatch.scoreTeam2}
+                  onChange={(e) => setNewMatch({ ...newMatch, scoreTeam2: e.target.value })}
+                  className="w-full p-2 border-2 border-blue-300 rounded text-center text-xl font-bold focus:border-blue-500 focus:outline-none"
+                  min="0"
+                />
+              </div>
             </div>
           </div>
 
           <div className="flex gap-2">
             <button
               onClick={resetForm}
-              className="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded"
+              className="flex-1 bg-gray-300 text-gray-700 px-4 py-2 rounded font-semibold hover:bg-gray-400"
             >
               ยกเลิก
             </button>
             <button
               onClick={handleSaveMatch}
-              className="flex-1 bg-green-500 text-white px-4 py-2 rounded"
+              className="flex-1 bg-green-500 text-white px-4 py-2 rounded font-semibold hover:bg-green-600"
             >
               <Save className="inline mr-2" size={16} />
-              {editingMatch ? 'อัปเดต' : 'บันทึก'}
+              {editingMatch ? 'update' : 'save'}
             </button>
           </div>
         </div>
@@ -191,14 +224,14 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
                 </div>
 
                 <div className="grid grid-cols-3 gap-2 sm:gap-4 items-center">
-                  {/* Team 1 */}
+                  {/* Team Burgundy */}
                   <div className="flex gap-1 sm:gap-2">
                     <div className="flex-1">
                       <div className={`rounded-lg sm:rounded-xl border-2 sm:border-4 overflow-hidden ${team1Won ? 'border-red-500' : 'border-gray-400'}`}>
                         {player1_1?.photo ? (
                           <img src={player1_1.photo} alt={match.team1Player1} loading="lazy" className="w-full aspect-square object-cover" />
                         ) : (
-                          <div className="w-full aspect-square bg-gray-400 flex items-center justify-center text-lg sm:text-3xl font-bold text-white">
+                          <div className="w-full aspect-square bg-red-300 flex items-center justify-center text-lg sm:text-3xl font-bold text-white">
                             {match.team1Player1?.charAt(0)}
                           </div>
                         )}
@@ -210,7 +243,7 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
                         {player1_2?.photo ? (
                           <img src={player1_2.photo} alt={match.team1Player2} loading="lazy" className="w-full aspect-square object-cover" />
                         ) : (
-                          <div className="w-full aspect-square bg-gray-400 flex items-center justify-center text-lg sm:text-3xl font-bold text-white">
+                          <div className="w-full aspect-square bg-red-300 flex items-center justify-center text-lg sm:text-3xl font-bold text-white">
                             {match.team1Player2?.charAt(0)}
                           </div>
                         )}
@@ -228,18 +261,18 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
                       {match.scoreTeam1} - {match.scoreTeam2}
                     </div>
                     <div className="text-xs sm:text-sm font-semibold" style={{color: team1Won ? '#ef4444' : team2Won ? '#2563eb' : '#666'}}>
-                      {team1Won ? 'ทีม 1 ชนะ' : team2Won ? 'ทีม 2 ชนะ' : 'ยังไม่แข่ง'}
+                      {team1Won ? 'Burgundy Win' : team2Won ? 'Navy Blue Win' : 'Waiting'}
                     </div>
                   </div>
 
-                  {/* Team 2 */}
+                  {/* Team Navy Blue */}
                   <div className="flex gap-1 sm:gap-2">
                     <div className="flex-1">
                       <div className={`rounded-lg sm:rounded-xl border-2 sm:border-4 overflow-hidden ${team2Won ? 'border-blue-600' : 'border-gray-500'}`}>
                         {player2_1?.photo ? (
                           <img src={player2_1.photo} alt={match.team2Player1} loading="lazy" className="w-full aspect-square object-cover" />
                         ) : (
-                          <div className="w-full aspect-square bg-gray-600 flex items-center justify-center text-lg sm:text-3xl font-bold text-white">
+                          <div className="w-full aspect-square bg-blue-300 flex items-center justify-center text-lg sm:text-3xl font-bold text-white">
                             {match.team2Player1?.charAt(0)}
                           </div>
                         )}
@@ -251,7 +284,7 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
                         {player2_2?.photo ? (
                           <img src={player2_2.photo} alt={match.team2Player2} loading="lazy" className="w-full aspect-square object-cover" />
                         ) : (
-                          <div className="w-full aspect-square bg-gray-600 flex items-center justify-center text-lg sm:text-3xl font-bold text-white">
+                          <div className="w-full aspect-square bg-blue-300 flex items-center justify-center text-lg sm:text-3xl font-bold text-white">
                             {match.team2Player2?.charAt(0)}
                           </div>
                         )}
