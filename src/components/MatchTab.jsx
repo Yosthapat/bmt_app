@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Edit2, Trash2, Save } from 'lucide-react';
+import { Swords, Plus, Edit2, Trash2, Save } from 'lucide-react';
 
 const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, requestPassword }) => {
   const [showAddMatch, setShowAddMatch] = useState(false);
@@ -13,9 +13,19 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
     scoreTeam2: 0
   });
 
-  // กรองสมาชิกตามทีม
-  const burgundyMembers = members.filter(m => m.team === 'Burgundy');
-  const navyBlueMembers = members.filter(m => m.team === 'Navy Blue');
+  // ฟังก์ชันเรียงลำดับสมาชิกตาม level และชื่อ
+  const sortMembers = (membersList) => {
+    const levelOrder = { 'Milk': 1, 'Soju': 2, 'Beer': 3, 'Highball': 4, 'Vodka': 5 };
+    return membersList.sort((a, b) => {
+      const levelDiff = (levelOrder[a.level] || 999) - (levelOrder[b.level] || 999);
+      if (levelDiff !== 0) return levelDiff;
+      return a.name.localeCompare(b.name);
+    });
+  };
+
+  // กรองสมาชิกตามทีมและเรียงลำดับ
+  const burgundyMembers = sortMembers(members.filter(m => m.team === 'Burgundy'));
+  const navyBlueMembers = sortMembers(members.filter(m => m.team === 'Navy Blue'));
 
   const handleSaveMatch = () => {
     if (newMatch.team1Player1 && newMatch.team1Player2 && newMatch.team2Player1 && newMatch.team2Player2) {
@@ -193,6 +203,7 @@ const MatchTab = ({ members, matches, onAddMatch, onUpdateMatch, onDeleteMatch, 
       <div className="space-y-4">
         {pendingMatches.length === 0 ? (
           <div className="text-center text-gray-500 py-10">
+            <Swords size={48} className="mx-auto mb-3 opacity-30" /> 
             <p>No Match</p>
           </div>
         ) : (

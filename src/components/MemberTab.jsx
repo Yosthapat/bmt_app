@@ -45,6 +45,16 @@ const MemberTab = ({ members, onAddMember, onDeleteMember, requestPassword }) =>
     }
   };
 
+  // ฟังก์ชันเรียงลำดับสมาชิกตาม level และชื่อ
+  const sortMembers = (membersList) => {
+    const levelOrder = { 'Milk': 1, 'Soju': 2, 'Beer': 3, 'Highball': 4, 'Vodka': 5 };
+    return [...membersList].sort((a, b) => {
+      const levelDiff = (levelOrder[a.level] || 999) - (levelOrder[b.level] || 999);
+      if (levelDiff !== 0) return levelDiff;
+      return a.name.localeCompare(b.name);
+    });
+  };
+
   return (
     <div>
       <div className="flex gap-2 mb-4">
@@ -146,7 +156,7 @@ const MemberTab = ({ members, onAddMember, onDeleteMember, requestPassword }) =>
             BURGUNDY
           </h2>
           <div className="grid grid-cols-4 sm:grid-cols-5 gap-1 sm:gap-2">
-            {members.filter(m => m.team === TEAMS.BURGUNDY).map(member => (
+            {sortMembers(members.filter(m => m.team === TEAMS.BURGUNDY)).map(member => (
               <div key={member.id} className="relative group">
                 <div className="relative">
                   {member.photo ? (
@@ -182,7 +192,7 @@ const MemberTab = ({ members, onAddMember, onDeleteMember, requestPassword }) =>
             NAVY BLUE
           </h2>
           <div className="grid grid-cols-4 sm:grid-cols-5 gap-1 sm:gap-2">
-            {members.filter(m => m.team === TEAMS.NAVY_BLUE).map(member => (
+            {sortMembers(members.filter(m => m.team === TEAMS.NAVY_BLUE)).map(member => (
               <div key={member.id} className="relative group">
                 <div className="relative">
                   {member.photo ? (
