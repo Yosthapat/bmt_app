@@ -22,7 +22,7 @@ const Header = () => {
       </div>
       
       <div className="relative z-10">
-        <h1 className="text-lg sm:text-2xl font-bold text-center drop-shadow-md">
+        <h1 className="text-lg sm:text-4xl font-bold text-center drop-shadow-md">
           BEERMINTON SPORTSDAY 2025
         </h1>
         <p className="text-center text-xs sm:text-sm mt-1 drop-shadow">

@@ -1,22 +1,24 @@
 import React from 'react';
+import { Medal } from 'lucide-react';
 
 const TeamSummary = ({ burgundyTeamSet, burgundyTeamScore, navyBlueTeamSet, navyBlueTeamScore }) => {
   return (
     <div className="bg-white p-4 shadow mb-4">
       <div className="grid grid-cols-3 gap-4 text-center">
         <div>
-          <div className="font-bold text-red-700">Burgundy</div>
-          <div className="font-bold text-red-700 text-2xl">{burgundyTeamSet}</div>
-          <div className="text-sm text-red-700">{burgundyTeamScore}</div>
+          <div className="font-bold text-red-700 text-3xl">Burgundy</div>
+          <div className="font-bold text-red-700 text-3xl mt-2">{burgundyTeamSet}</div>
+          <div className="text-sm text-red-700 text-xl mt-2">{burgundyTeamScore}</div>
         </div>
         <div>
-          <div className="font-bold text-black-700 text-xs sm:text-base">Team Set / Score</div>
-          <div className="font-bold text-black-700 text-2xl">VS</div>
+          <Medal size={48} className="mx-auto mb-3 opacity-30" />
+          <div className="font-bold text-black-700 text-xl mt-3">Team Set</div>
+          <div className="font-bold text-black-700 text-xl mt-3">Score</div>
         </div>
         <div>
-          <div className="font-bold text-blue-700">Navy Blue</div>
-          <div className="font-bold text-blue-700 text-2xl">{navyBlueTeamSet}</div>
-          <div className="text-sm text-blue-700">{navyBlueTeamScore}</div>
+          <div className="font-bold text-blue-700 text-3xl">Navy Blue</div>
+          <div className="font-bold text-blue-700 text-3xl mt-2">{navyBlueTeamSet}</div>
+          <div className="text-sm text-blue-700 text-xl mt-2">{navyBlueTeamScore}</div>
         </div>
       </div>
     </div>

@@ -119,6 +119,16 @@ const App = () => {
     }
   };
 
+  const handleEditMember = async (updatedMember) => {
+    try {
+      const memberRef = ref(database, `members/${updatedMember.id}`);
+      await set(memberRef, updatedMember);
+      alert('Member updated successfully!');
+    } catch (error) {
+      alert('Error updating member: ' + error.message);
+    }
+  };
+
   const handleDeleteMember = async (id) => {
     try {
       const memberRef = ref(database, `members/${id}`);
@@ -213,6 +223,7 @@ const App = () => {
           <MemberTab
             members={members}
             onAddMember={handleAddMember}
+            onEditMember={handleEditMember}
             onDeleteMember={handleDeleteMember}
             requestPassword={requestPassword}
           />
