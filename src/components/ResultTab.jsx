@@ -118,7 +118,7 @@ const ResultTab = ({ members, matches, requestPassword, onEdit, onDelete }) => {
                         {match.scoreTeam2}
                       </span>
                     </div>
-                    <div className="text-xl sm:text-sm font-bold mt-2" style={{color: team1Won ? '#a72a2aff' : team2Won ? '#204fb3ff' : '#666'}}>
+                    <div className="text-xs sm:text-sm font-bold mt-2" style={{color: team1Won ? '#a72a2aff' : team2Won ? '#204fb3ff' : '#666'}}>
                       {team1Won ? 'Burgundy Won' : team2Won ? 'Navy Blue Won' : 'Draw'}
                     </div>
                   </div>
